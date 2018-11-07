@@ -15,35 +15,42 @@ const mayella =  new Employee( 'Mayella', '89068', '35000', 2 );
 
 const employees = [ atticus, jem, scout, robert, mayella ]; // this is an array of objects
 
-// function processEmployee(emp){
-//   return new Bonus(emp);
-// }
+function processEmployee(emp){
+    return {
+      name: emp.name,
+      bonusPercentage: calculateBonus(emp),
+      totalCompensation: calculateTotalCompensation(emp.annualSalary, calculateBonus(emp)),
+      totalBonus: calculateTotalBonus(emp.annualSalary, calculateBonus(emp))
+    }
+}
 
+// Loop over Employees array
 for(let i = 0; i < employees.length; i++) {
-  console.log(employees[i]);
+  console.log('Loop over employees array: ', employees[i]);
 
-  //caculate bonus percentage
-  console.log('calculate bonus: ' + employees[i].name + ' -  ' + calculateBonus(employees[i]));
+  // name
+  console.log('Name: ', employees[i].name);
+
+  // calculate bonus percentage
+  console.log('Calculate Bonus: ' + employees[i].name + ' -  ' + calculateBonus(employees[i]));
 
   // total compensation
+  console.log('Total Compensation: ', calculateTotalCompensation(employees[i].annualSalary, calculateBonus(employees[i])));
   
-  //total bonus
+  // total bonus
+  console.log('Total Bonus: ', calculateTotalBonus(employees[i].annualSalary, calculateBonus(employees[i])));
+} // end of for loop
 
-  // new Bonus(employeeBonus)
+function calculateTotalBonus(annualSalary, totalBonus){
+  let tBonus = Math.round(parseInt(annualSalary) * totalBonus);
+  return tBonus;
+}
 
-}// end of for loop
-
-class Bonus {
-  constructor(){
-    this.bounsPercentage = bounsPercentage;
-    this.totalCompensation = totalCompensation;
-    this.totalBonus = totalBonus;
-  }// endo of constructor
-  runName(){
-    console.log('print name', this.name);
-  }
-}// end of class
-
+function calculateTotalCompensation(annualSalary, bonus){
+  let annSalary = parseInt(annualSalary);
+  let totalCompensation = annSalary + (annSalary * bonus);
+  return totalCompensation;
+}
 
 function calculateBonus(emp){
   let employeeBonus = 0;
@@ -80,6 +87,13 @@ function calculateBonus(emp){
   }
   return employeeBonus;
 }
+
+// Call process empolyee function
+console.log('Process employee: ', processEmployee(atticus));
+console.log('Process employee: ', processEmployee(jem));
+console.log('Process employee: ', processEmployee(scout));
+console.log('Process employee: ', processEmployee(robert));
+console.log('Process employee: ', processEmployee(mayella));
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
