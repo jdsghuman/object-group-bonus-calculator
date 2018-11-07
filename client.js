@@ -25,21 +25,23 @@ function processEmployee(emp){
 }
 
 // Loop over Employees array
-for(let i = 0; i < employees.length; i++) {
-  console.log('Loop over employees array: ', employees[i]);
-
-  // name
-  console.log('Name: ', employees[i].name);
-
-  // calculate bonus percentage
-  console.log('Calculate Bonus: ' + employees[i].name + ' -  ' + calculateBonus(employees[i]));
-
-  // total compensation
-  console.log('Total Compensation: ', calculateTotalCompensation(employees[i].annualSalary, calculateBonus(employees[i])));
+function loopEmployeesArray() {
+  for(let i = 0; i < employees.length; i++) {
+    console.log('Loop over employees array: ', employees[i]);
   
-  // total bonus
-  console.log('Total Bonus: ', calculateTotalBonus(employees[i].annualSalary, calculateBonus(employees[i])));
-} // end of for loop
+    // name
+    console.log('Name: ', employees[i].name);
+  
+    // calculate bonus percentage
+    console.log('Calculate Bonus: ' + employees[i].name + ' -  ' + calculateBonus(employees[i]));
+  
+    // total compensation
+    console.log('Total Compensation: ', calculateTotalCompensation(employees[i].annualSalary, calculateBonus(employees[i])));
+    
+    // total bonus
+    console.log('Total Bonus: ', calculateTotalBonus(employees[i].annualSalary, calculateBonus(employees[i])));
+  } // end of for loop  
+}
 
 function calculateTotalBonus(annualSalary, totalBonus){
   let tBonus = Math.round(parseInt(annualSalary) * totalBonus);
@@ -88,12 +90,18 @@ function calculateBonus(emp){
   return employeeBonus;
 }
 
-// Call process empolyee function
-console.log('Process employee: ', processEmployee(atticus));
-console.log('Process employee: ', processEmployee(jem));
-console.log('Process employee: ', processEmployee(scout));
-console.log('Process employee: ', processEmployee(robert));
-console.log('Process employee: ', processEmployee(mayella));
+window.onload=function(){
+  let runApp = document.querySelector('button');
+  // Button clicked
+  runApp.addEventListener('click', function(){
+    console.log('Process employee: ', processEmployee(atticus));
+    console.log('Process employee: ', processEmployee(jem));
+    console.log('Process employee: ', processEmployee(scout));
+    console.log('Process employee: ', processEmployee(robert));
+    console.log('Process employee: ', processEmployee(mayella));
+    loopEmployeesArray();
+  });
+};
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
